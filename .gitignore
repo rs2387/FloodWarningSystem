@@ -1,10 +1,20 @@
-cache/
-__pycache__/
+# Virtual environments
+venv/
+.env/
 
+# Python cache
+__pycache__/
 *.pyc
 
-*.bak
-*~
+# Jupyter
+.ipynb_checkpoints/
+
+# OS junk
 .DS_Store
 
+# Editor
 .vscode/
+
+# Temporary / backup files
+*.bak
+*~
