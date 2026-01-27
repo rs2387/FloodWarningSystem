@@ -5,7 +5,8 @@
 for manipulating/modifying station data
 
 """
-
+# Import function to get latest water level 
+from datafetcher import fetch_latest_water_level_data 
 
 class MonitoringStation:
     """This class represents a river level monitoring station"""
@@ -39,3 +40,16 @@ class MonitoringStation:
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
         return d
+
+
+    #new method Task2B
+    def relative_water_level(self):
+
+        #call method to get the typical range
+        typical_level = self.typical_range
+
+        #call function to gte latest water level 
+        latest_level  = fetch_latest_water_level_data()
+
+        
+    
