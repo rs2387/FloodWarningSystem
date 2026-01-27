@@ -9,7 +9,7 @@ geographical data.
 from .utils import sorted_by_key  # noqa
 import math
 
-r = 6371
+earth_radius = 6371
 
 def haversine(p, phi1, lambda1):
     phi2, lambda2 = p[0], p[1]
@@ -18,7 +18,7 @@ def haversine(p, phi1, lambda1):
     hav = (1 - math.cos(deltaphi)+ math.cos(phi1)*math.cos(phi2)*(1-math.cos(deltalambda)))/2
     theta = 2*math.asin((hav)**0.5)
     rad = theta*math.pi/180
-    return r*rad
+    return earth_radius*rad
 
 
 
@@ -31,4 +31,12 @@ def stations_by_distance(stations, p):
 
 
     return sorted_total
+
+def stations_within_radius(stations, centre, r):
+    total = []
+    for station in stations:
+        if haversine(centre, station.coord[0], station.coord[1]) < r:
+            total.append(station.name)
+
+    return total
 
