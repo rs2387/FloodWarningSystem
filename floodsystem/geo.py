@@ -11,6 +11,7 @@ import math
 
 earth_radius = 6371
 
+# Task 1C uses haversine function to calculate curved radius 
 def haversine(p, phi1, lambda1):
     phi2, lambda2 = p[0]*math.pi/180, p[1]*math.pi/180
     deltaphi = phi2 - phi1*math.pi/180
@@ -20,7 +21,7 @@ def haversine(p, phi1, lambda1):
     return earth_radius*theta
 
 
-
+# Task 1B just orders station by distance from co-ordinate p
 def stations_by_distance(stations, p):
     total = []
     for station in stations:
@@ -31,6 +32,7 @@ def stations_by_distance(stations, p):
 
     return sorted_total
 
+# Task 1C uses curved distanvce (haversine) to find stations within radius
 def stations_within_radius(stations, centre, r):
     y = []
     for station in stations:
@@ -41,3 +43,11 @@ def stations_within_radius(stations, centre, r):
 
     return y
 
+# Task 1D returns list of river names with a monitoring station
+def rivers_with_station(stations):
+    river_names = []
+    for station in stations:
+        if station.river != None:
+            river_names.append(station.river)
+        
+    return river_names
