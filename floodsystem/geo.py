@@ -47,7 +47,24 @@ def stations_within_radius(stations, centre, r):
 def rivers_with_station(stations):
     river_names = []
     for station in stations:
-        if station.river != None:
+        #prevents dupes
+        if (station.river != None) and (station.river not in river_names):
             river_names.append(station.river)
         
     return river_names
+
+# Task 1D returns a dict mapping each unique river with a list station objects on that river
+def stations_by_river(stations):
+    river_dict ={}
+    rivers_with_stations = rivers_with_station(stations)
+    for river in rivers_with_stations:
+        one_river_stations = []
+        for station in stations:
+            if station.river == river:
+                one_river_stations.append(station)
+        river_dict[river] = one_river_stations
+    
+    return river_dict
+
+
+
