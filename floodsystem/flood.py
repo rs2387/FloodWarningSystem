@@ -13,22 +13,15 @@ def stations_level_over_threshold(stations, tol):
 
 # Task 2C, most at risk stations
 
-'''
 def stations_highest_rel_level(stations, N):
-    unsortedStationsRelevantData = []
-    for station in stations:
-        range = station.typical_range[1]-station.typical_range[0]
-        unsortedStationsRelevantData.append((station.station_id, stations.latest_level-range)) # issue here
-    sortedStationsRelevantData = sorted_by_key(unsortedStationsRelevantData, 1)
-    for i in sortedStationsRelevantData:
-        i = i[0]
-    return sortedStationsRelevantData
-'''
-def stations_highest_rel_level(stations):
-    unsortedStationsRelevantData = []
-    for station in stations:
-        print(station.station_id)
-        print(station.measure_id)
-        print(station.typical_range)
- 
 
+    unsortedStationsRelevantData = []
+    for station in stations:
+        try:
+            range = station.typical_range[1]-station.typical_range[0]
+            unsortedStationsRelevantData.append((station.name, station.latest_level-range)) # issue here
+        except:
+            return None
+
+    sortedStationsRelevantData = sorted_by_key(unsortedStationsRelevantData, 1)
+    return sortedStationsRelevantData
