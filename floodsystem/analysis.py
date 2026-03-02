@@ -4,9 +4,11 @@ import matplotlib
 
 # Task 2F fitting polynomial to water level data
 def polyfit(dates, levels, p):
-    # Create list of dates numbers
+
+    # Create list of dates numbers and list of water levels
     x = matplotlib.dates.date2num(dates)
     y = levels
+    
     xat0 = x[0]
 
     # Makes graph start at 0

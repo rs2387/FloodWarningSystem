@@ -1,5 +1,6 @@
 
 from .utils import sorted_by_key  # noqa
+from .stationdata import update_water_levels
 
 # Task 2B, assessing flood risk by level
 def stations_level_over_threshold(stations, tol):
@@ -12,16 +13,22 @@ def stations_level_over_threshold(stations, tol):
     return sorted_by_key(stations_tuple, 1)
 
 # Task 2C, most at risk stations
-
 def stations_highest_rel_level(stations, N):
 
-    unsortedStationsRelevantData = []
-    for station in stations:
-        try:
-            range = station.typical_range[1]-station.typical_range[0]
-            unsortedStationsRelevantData.append((station.name, station.latest_level-range)) # issue here
-        except:
-            return None
+    update_water_levels(stations)
 
-    sortedStationsRelevantData = sorted_by_key(unsortedStationsRelevantData, 1)
-    return sortedStationsRelevantData
+    stationRelativeLevels = []
+    for station in stations:
+        if station.relative_water_level() == None:
+            continue
+        else:
+            stationRelativeLevels.append((station, station.relative_water_level()))
+
+    
+    stationRelativeLevels = sorted_by_key(stationRelativeLevels, 1)
+
+    output = []
+    for tup in stationRelativeLevels[-N:]:
+        output.append(tup[0])
+
+    return output
