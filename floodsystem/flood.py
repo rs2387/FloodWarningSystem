@@ -28,7 +28,9 @@ def stations_highest_rel_level(stations, N):
     stationRelativeLevels = sorted_by_key(stationRelativeLevels, 1)
 
     output = []
-    for tup in stationRelativeLevels[-N:]:
-        output.append(tup[0])
 
+    temp = len(stationRelativeLevels)
+    for i in range(1,N+1):
+        output.append((stationRelativeLevels[temp-i])[0])
+    
     return output
