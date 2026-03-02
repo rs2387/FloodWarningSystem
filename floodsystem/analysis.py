@@ -7,16 +7,16 @@ def polyfit(dates, levels, p):
 
     # Create list of dates numbers and list of water levels
     x = matplotlib.dates.date2num(dates)
-    y = levels
-    
-    xat0 = x[0]
 
-    # Makes graph start at 0
-    p_coeff = np.polyfit(x-xat0, y, p)
+    
+
+    # Using shifted x values, find coefficient of best-fit
+    # polynomial f(x) of degree p
+    p_coeff = np.polyfit(x - x[0], levels, p)
 
     # Convert coefficient into a polynomial that can be evaluated
+    # e.g. poly(0.3)
     poly = np.poly1d(p_coeff)
 
-
-
-    return poly, xat0
+    # returns the polynomial and whatever it was shifted by
+    return poly, x[0]

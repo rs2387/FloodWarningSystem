@@ -5,18 +5,23 @@ from .analysis import polyfit
 # Task 2F, plotting the least squares fit 
 def plot_water_level_with_fit(station, dates, levels, p):
 
+    # normal dates and levels
     x, y = matplotlib.dates.date2num(dates), levels
-      
-    poly, xat0 = polyfit(dates, levels, p)
+    
+    # polynomial and the x axis shift is given 
+    poly, x0 = polyfit(dates, y, p)
 
+    # plot normal water level data 
     plt.plot(x, y, '.')
-    plt.plot(dates, poly(x - xat0))
+
+    # adjusting aesthetics
     plt.xlabel("date")
     plt.ylabel("water level")
     plt.xticks(rotation=45)
     plt.title(station.name)
 
-    plt.plot(xat0, poly)
+    # also plot the polynomial making sure to shift to start at 0
+    plt.plot(x, poly(x-x0))
 
     plt.show()
 
