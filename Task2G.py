@@ -23,14 +23,23 @@ update_water_levels(stations)
 
 riskScores = []
 
-for station in stations:
+for station in stations[:20]:
     # adds risk due to absolute level
     risk = station.latest_level - station.typical_range[1]
     # adds risk due to ratio, weighted appropriately
-    risk += relative_water_level(station)*3
-    # adds risk due to recent rates
-    risk += 
-    riskScores.append((station.name,risk))
+    risk += risk*3/station.typical_range[1]
+    riskScores.append((station.name, risk))
+
+
+'''
+
+from floodsystem.utils import sorted_by_key  # noqa
+
+riskScores.sorted_by_key(riskScores, 1)
+
+'''
+
+print(riskScores)
 
 
 
