@@ -27,7 +27,8 @@ case = [none, zeroes, typical1, typical2, typical3]
 tol = 0.8
 total = stations_level_over_threshold(case, tol)
 
-print(total)
+if len(total) == 1:
+    print(total[0])
 
 for x in range(len(total)-1,0, -1):
     print(total[x])
