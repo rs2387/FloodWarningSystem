@@ -1,6 +1,15 @@
-def test_stations_highest_rel_level(stations, N):
-    return None
 
+from floodsystem.station import MonitoringStation
+
+from test_utils import case
+
+from floodsystem.flood import stations_highest_rel_level
+
+
+stations = stations_highest_rel_level(case, 10)
+
+for station in stations:
+        print(station.name, station.relative_water_level())
        
 
  
