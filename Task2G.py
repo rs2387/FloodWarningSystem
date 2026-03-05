@@ -32,11 +32,8 @@ for station in stations[:20]:
 
 
 '''
-
 from floodsystem.utils import sorted_by_key  # noqa
-
 riskScores.sorted_by_key(riskScores, 1)
-
 '''
 
 print(riskScores)
