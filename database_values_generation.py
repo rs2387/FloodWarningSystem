@@ -7,5 +7,5 @@ stations = build_station_list()
 
 update_water_levels(stations)
 
-for station in stations[100:120]:
+for station in stations[:120]:
     print(station)
