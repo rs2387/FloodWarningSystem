@@ -8,8 +8,33 @@ from floodsystem.flood import stations_highest_rel_level
 
 stations = stations_highest_rel_level(case, 10)
 
+# Task 2C, most at risk stations
+def test_stations_highest_rel_level(stations, N):
+
+    stationRelativeLevels = []
+    for station in stations:
+        if station.relative_water_level() == None:
+            continue
+        else:
+            stationRelativeLevels.append((station, station.relative_water_level()))
+
+    
+    stationRelativeLevels = sorted_by_key(stationRelativeLevels, 1)
+
+    output = []
+
+    temp = len(stationRelativeLevels)
+    for i in range(1,N+1):
+        output.append((stationRelativeLevels[temp-i])[0])
+    
+    return output 
+
 for station in stations:
         print(station.name, station.relative_water_level())
+
+
+
+
        
 
  

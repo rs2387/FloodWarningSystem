@@ -79,5 +79,5 @@ typical3 = MonitoringStation("station_id_typical3", "measure_id_typical3", "labe
 
 typical3.latest_level = 30
 
-case = [none, zeroes, typical1, typical2, typical3]
+case = [none, zeroes, typical1, typical2, typical3, typical3, typical3, typical3, typical3, typical3, typical3]
 
