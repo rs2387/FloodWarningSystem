@@ -60,6 +60,8 @@ def test_reverse_sort():
 
 from floodsystem.station import MonitoringStation
 
+from floodsystem.utils import sorted_by_key
+
 # It has been assumed that the other fields contain no None; this can be refined by going through more entries in database_values_generation.
 none = MonitoringStation("station_id_none", "measure_id_none", "label_none", (0,0), None, "river_none", "town_none")
 
@@ -80,4 +82,25 @@ typical3 = MonitoringStation("station_id_typical3", "measure_id_typical3", "labe
 typical3.latest_level = 30
 
 case = [none, zeroes, typical1, typical2, typical3, typical3, typical3, typical3, typical3, typical3, typical3]
+
+def test_stations_highest_rel_level(stations, N):
+
+    stationRelativeLevels = []
+    for station in stations:
+        if station.relative_water_level() == None:
+            continue
+        else:
+            stationRelativeLevels.append((station, station.relative_water_level()))
+
+    
+    stationRelativeLevels = sorted_by_key(stationRelativeLevels, 1)
+
+    output = []
+
+    temp = len(stationRelativeLevels)
+    print(temp)
+    for i in range(1,N+1):
+        output.append((stationRelativeLevels[temp-i])[0])
+    
+    return output
 

@@ -1,6 +1,6 @@
 
-from .utils import sorted_by_key  # noqa
-from .stationdata import update_water_levels
+from floodsystem.utils import sorted_by_key  # noqa
+from floodsystem.stationdata import update_water_levels
 
 # Task 2B, assessing flood risk by level
 def stations_level_over_threshold(stations, tol):
@@ -30,6 +30,7 @@ def stations_highest_rel_level(stations, N):
     output = []
 
     temp = len(stationRelativeLevels)
+    print(temp)
     for i in range(1,N+1):
         output.append((stationRelativeLevels[temp-i])[0])
     
